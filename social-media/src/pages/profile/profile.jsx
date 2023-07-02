@@ -1,6 +1,7 @@
 import "./profile.scss";
+import React from "react";
 
 const Profile = () => {
-  return <div className="profile">Login</div>;
+  return <div className="profile">Profile</div>;
 };
 export default Profile;
