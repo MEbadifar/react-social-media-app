@@ -1,11 +1,13 @@
+import Stories from "../../components/stories/stories";
+import Posts from "../../components/posts/Posts";
+
 import "./home.scss";
 
 const Home = () => {
   return (
     <div className="home">
-      <h1>home</h1>
-
-      
+      <Stories />
+      <Posts />
     </div>
   );
 };

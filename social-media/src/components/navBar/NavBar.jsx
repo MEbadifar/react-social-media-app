@@ -1,17 +1,21 @@
 import React from "react";
+import { ReactDOM, Link } from "react-router-dom";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined"
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
 import "./navbar.scss";
-import { ReactDOM,Link } from "react-router-dom";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import PersonOutlinedIcon  from '@mui/icons-material/PersonOutlined';
-import EmailOutlinedIcon  from '@mui/icons-material/EmailOutlined';
-import SearchOutlinedIcon  from '@mui/icons-material/SearchOutlined';
-import NotificationsOutlinedIcon  from '@mui/icons-material/NotificationsOutlined';
-
-
+import { AuthContext } from "../../context/authContext";
 
 const NavBar = () => {
+  const { toggle, darkMode } = useContext(DarkModeContext);
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className="navbar">
       <div className="left">
@@ -19,23 +23,26 @@ const NavBar = () => {
           <span>LamaSocial</span>
         </Link>
         <HomeOutlinedIcon />
-        <DarkModeOutlinedIcon />
+        {darkMode ? <WbSunnyOutlinedIcon onClick={toggle}/> :<DarkModeOutlinedIcon onClick={toggle}  />}
         <GridViewOutlinedIcon />
         <div className="search">
-        <SearchOutlinedIcon />
-        <input type="text" placeholder="Search..."/>
+          <SearchOutlinedIcon />
+          <input type="text" placeholder="Search..." />
         </div>
       </div>
-      <div className="right" >
+      <div className="right">
         <PersonOutlinedIcon />
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <div className="user">
-          <img src="https://images.pexels.com/photos/15846364/pexels-photo-15846364/free-photo-of-fashion-frau-model-dach.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-          <span>Mehdi</span>
+          <img
+            src={currentUser.profilePic}
+            alt=""
+          />
+          <span>{ currentUser.name}</span>
         </div>
       </div>
-
-    </div>);
+    </div>
+  );
 };
 export default NavBar;
