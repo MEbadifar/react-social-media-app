@@ -10,6 +10,13 @@
         overflow: scroll;
         background-color: themed("bgSoft");
 
+        @include mobile {
+            display: none;
+        }
+        @include tablet {
+            display: none;
+        }
+
         &::-webkit-scrollbar {
             display: none;
         }
@@ -68,7 +75,8 @@
 
                         span {
                             font-weight: 500;
-                            color: themed("textColor");;
+                            color: themed("textColor");
+                            ;
                             margin: 10px;
                         }
                     }
